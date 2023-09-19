@@ -4,6 +4,8 @@ import 'package:islami_app/layout/home_layout.dart';
 import 'package:islami_app/moduls/Quran/QuranDetails.dart';
 import 'package:islami_app/moduls/splash%20screen/SplashScreen.dart';
 
+import 'moduls/Hadeth/HadethDetails.dart';
+
 void main() {
   runApp(MyApplication());
 }
@@ -19,6 +21,7 @@ class MyApplication extends StatelessWidget {
         SplashScreen.routeName: (context) => SplashScreen(),
         HomeLayout.routeName: (context) => HomeLayout(),
         QuranDetails.routeName: (context) => QuranDetails(),
+        HadethDetails.routeName: (context) => HadethDetails(),
       },
     );
   }
