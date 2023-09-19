@@ -10,7 +10,6 @@ class QuranDetails extends StatefulWidget {
   @override
   State<QuranDetails> createState() => _QuranDetailsState();
 }
-
 class _QuranDetailsState extends State<QuranDetails> {
   String content = "";
   List<String> allVerses = [];
