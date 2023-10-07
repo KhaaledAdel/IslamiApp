@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:islami_app/moduls/Hadeth/HadethView.dart';
+import 'package:provider/provider.dart';
+
+import '../../core/provider/appProvider.dart';
 
 class HadethDetails extends StatefulWidget {
   static const String routeName = "HadethDetails";
@@ -19,16 +23,20 @@ class _QuranDetailsState extends State<HadethDetails> {
     var args = ModalRoute.of(context)?.settings.arguments as HadethContent;
     var mediaQuery = MediaQuery.of(context).size;
     var theme = Theme.of(context);
+    var appProvider = Provider.of<AppProvider>(context);
 
     return Container(
-      decoration: const BoxDecoration(
-          image: DecorationImage(
-              image: AssetImage("assets/images/background.png"),
-              fit: BoxFit.cover)),
+      decoration: BoxDecoration(
+        image: DecorationImage(
+            image: AssetImage(
+              appProvider.backgroundImage(),
+            ),
+            fit: BoxFit.cover),
+      ),
       child: Scaffold(
         backgroundColor: Colors.transparent,
         appBar: AppBar(
-          title: Text("إسلامي"),
+          title: Text(AppLocalizations.of(context)!.islami),
         ),
         body: Container(
           width: mediaQuery.width,
@@ -36,21 +44,31 @@ class _QuranDetailsState extends State<HadethDetails> {
           margin: EdgeInsets.only(left: 30, right: 30, top: 33, bottom: 120),
           padding: EdgeInsets.symmetric(horizontal: 15, vertical: 35),
           decoration: BoxDecoration(
-            color: Color(0xffF8F8F8).withOpacity(0.8),
+            color: theme.colorScheme.onPrimaryContainer.withOpacity(0.8),
             borderRadius: BorderRadius.circular(25),
           ),
           child: Column(
             children: [
-              Text(args.text, style: theme.textTheme.bodyLarge),
+              Text(
+                args.text,
+                style: theme.textTheme.bodyLarge!
+                    .copyWith(color: theme.colorScheme.onSecondaryContainer),
+              ),
               Divider(
-                color: theme.primaryColor,
+                color: theme.colorScheme.onSecondaryContainer,
                 thickness: 2,
                 indent: 20,
                 endIndent: 40,
               ),
-              SingleChildScrollView(),
               Expanded(
-                child: Text(args.content, style: theme.textTheme.bodySmall),
+                child: ListView.builder(
+                  itemCount: 1,
+                  itemBuilder: (context, index) => Text(
+                    args.content,
+                    textAlign: TextAlign.center,
+                    style: theme.textTheme.bodyMedium,
+                  ),
+                ),
               ),
             ],
           ),
