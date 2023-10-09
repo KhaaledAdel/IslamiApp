@@ -23,7 +23,7 @@ class _HadethViewState extends State<HadethView> {
           thickness: 2,
           endIndent: 3,
           indent: 3,
-          color: theme.primaryColor,
+          color: theme.colorScheme.onSecondaryContainer,
           height: 13,
         ),
         Text("الأحاديث", style: theme.textTheme.bodyMedium),
@@ -31,8 +31,8 @@ class _HadethViewState extends State<HadethView> {
           thickness: 2,
           endIndent: 3,
           indent: 3,
-          color: theme.primaryColor,
-          height: 15,
+          color: theme.colorScheme.onSecondaryContainer,
+          height: 17,
         ),
         Expanded(
           child: ListView.separated(
@@ -51,7 +51,7 @@ class _HadethViewState extends State<HadethView> {
             ),
             itemCount: allhadethcontent.length,
             separatorBuilder: (context, index) => Divider(
-              color: Color(0xffE3E2E3FF),
+              color: theme.colorScheme.onPrimaryContainer,
               height: 30,
             ),
           ),
